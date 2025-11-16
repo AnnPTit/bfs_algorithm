@@ -1,0 +1,31 @@
+# === PHẦN THIẾT LẬP BÀI TOÁN ===
+# Ghi điểm bạn muốn bắt đầu tìm
+Bắt đầu: A
+
+# Ghi điểm bạn muốn tìm đến
+Kết thúc: G
+
+
+# === PHẦN MÔ TẢ ĐƯỜNG ĐI ===
+# Ghi tất cả các đường đi có trong bản đồ
+# Bạn có thể dùng dấu -> cho rõ ràng
+
+Đường đi: A -> B
+Đường đi: A -> C
+Đường đi: A -> D
+
+Đường đi: B -> I
+Đường đi: B -> G
+
+Đường đi: C -> E
+Đường đi: C -> F
+
+Đường đi: D -> C
+Đường đi: D -> F
+
+Đường đi: I -> G
+
+Đường đi: E -> G
+Đường đi: E -> K
+
+Đường đi: F -> K
