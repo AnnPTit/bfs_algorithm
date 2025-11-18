@@ -13,8 +13,68 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("\n\n\nThuật toán BFS : ");
         readFile();
+        Queue<String> myQueue = new LinkedList<>();
+        Set<String> visited = new HashSet<>();
+        Map<String, String> parent = new HashMap<>();
+        // kiểm tra trống start và end
+        if (start == null || end == null) {
+            System.out.println("Thiếu điểm bắt đầu hoặc kết thúc !");
+            return;
+        }
+        if (start.equals(end)) {
+            System.out.println("Điểm bắt đầu là điểm kết thúc!");
+            return;
+        }
+        // Khởi tạo queue với trạng thái bắt đầu
+        myQueue.add(start);
         System.out.println(map);
+        while (!myQueue.isEmpty()) {
+            String item = myQueue.poll();
+            System.out.println("Đã lấy: " + item);
+            System.out.println("Đỉnh kề : " + map.get(item));
+            if (end.equals(item)) {
+                System.out.println("Điểm kết thúc là : " + item);
+                // tính toán đường đi
+                printPath(parent);
+                return;
+            }
+            if (visited.contains(item)) {
+                continue;
+            }
+            // nếu không phải -> lấy các đỉnh kề thêm vào queue
+            List<String> neighbors = map.get(item);
+            if (neighbors == null) {
+                System.out.println("Đỉnh không có đỉnh kề ! ");
+                continue;
+            } else {
+                myQueue.addAll(neighbors);
+                neighbors.stream()
+                        .filter(i -> parent.get(i) == null).
+                        forEach(i -> parent.put(i, item));
+            }
+            visited.add(item);
+            System.out.println("Đỉnh đã xét : " + visited);
+            System.out.println("Queue : " + myQueue);
+            System.out.println("Đỉnh cha : " + parent);
+            System.out.println("\n\n");
+        }
         System.out.println("\n\n\n");
+    }
+
+    private static void printPath(Map<String, String> parent) {
+        List<String> path = new ArrayList<>();
+        String curr = end;
+        while (curr != null) {
+            path.add(curr);
+            curr = parent.get(curr);
+        }
+        Collections.reverse(path);
+
+        if (path.get(0).equals(start)) {
+            System.out.println("Đường đi là: " + String.join("->", path));
+        } else {
+            System.out.println("Không thể truy vết đường đi về điểm bắt đầu.");
+        }
     }
 
     private static void readFile() {
